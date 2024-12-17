@@ -10,6 +10,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        Player player = new Player();
+        String[] possibleChords = getPossibleChords();
+
+        int rnd = new Random().nextInt(possibleChords.length);
+        StringBuilder chordprog = new StringBuilder();
+        chordprog.append(possibleChords[rnd] + " ");
+        rnd = new Random().nextInt(possibleChords.length);
+        chordprog.append(possibleChords[rnd]);
+
+
+        ChordProgression cp = new ChordProgression("Cmaj Cmaj^");
 
         Scanner scanner = new Scanner(System.in);
         char userInput = ' ';
@@ -18,6 +29,7 @@ public class Main {
         while (true) {
             // Code to be repeated in the loop
             System.out.println("This is the loop running...");
+            player.play(cp);
 
             // Wait for user input at the end of each loop iteration
             System.out.print("Press 'x' to exit or 'c' to continue: ");
@@ -45,37 +57,28 @@ public class Main {
         // Close the scanner
         scanner.close();
 
-
-
-        Player player = new Player();
-        String chords =
-                "I I^ I^^ " +
-                "II II^ II^^ " +
-                "III III^ III^^ " +
-                "IV IV^ IV^^" +
-                "V V^ V^^" +
-                "VI VI^ VI^^" +
-                "VII VII^ VII^^" +
-                "i i^ i^^" +
-                "ii ii^ ii^^" +
-                "iii iii^ iii^^" +
-                "iv iv^ iv^^" +
-                "v v^ v^^" +
-                "vi vi^ vi^^" +
-                "vii vii^ vii^^";
-        String[] parts = chords.split(" ");
-
-        int rnd = new Random().nextInt(parts.length);
-        StringBuilder chordprog = new StringBuilder();
-        chordprog.append(parts[rnd] + " ");
-        rnd = new Random().nextInt(parts.length);
-        chordprog.append(parts[rnd]);
-
-        //ChordProgression cp = new ChordProgression(chordprog.toString());
-
-
-        ChordProgression cp = new ChordProgression("I I^ I^^");
         System.out.println(cp.toString());
-        player.play(cp);
+
+    }
+
+    private static String[] getPossibleChords() {
+        String chords = "I I^ I^^";
+
+        // +
+//                        "II II^ II^^ " +
+//                        "III III^ III^^ " +
+//                        "IV IV^ IV^^" +
+//                        "V V^ V^^" +
+//                        "VI VI^ VI^^" +
+//                        "VII VII^ VII^^" +
+//                        "i i^ i^^" +
+//                        "ii ii^ ii^^" +
+//                        "iii iii^ iii^^" +
+//                        "iv iv^ iv^^" +
+//                        "v v^ v^^" +
+//                        "vi vi^ vi^^" +
+//                        "vii vii^ vii^^";
+
+        return chords.split(" ");
     }
 }
